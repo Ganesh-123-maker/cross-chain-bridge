@@ -32,21 +32,16 @@ function StatsGrid() {
 
   return (
     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
-
       {stats.map((stat, i) => (
-
         <motion.div
           key={i}
           whileHover={{ y: -5 }}
           className="bg-[#0f1524] border border-white/5 rounded-2xl p-6 text-left transition-colors hover:border-white/15"
         >
-
           <div className="flex justify-between items-start mb-4">
-
             <div className="w-11 h-11 rounded-xl bg-[#1a2235] flex items-center justify-center text-xl">
               {stat.icon}
             </div>
-
             <span
               className={`text-xs font-bold ${
                 stat.change.includes("+")
@@ -56,21 +51,15 @@ function StatsGrid() {
             >
               {stat.change}
             </span>
-
           </div>
-
           <div className="text-3xl font-extrabold text-white mb-1">
             {stat.value}
           </div>
-
           <div className="text-xs text-[#6b7a99] font-medium">
             {stat.label}
           </div>
-
         </motion.div>
-
       ))}
-
     </div>
   );
 }

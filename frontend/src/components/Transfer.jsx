@@ -9,11 +9,8 @@ function Transfer() {
   async function transferBTC() {
     const provider = new ethers.BrowserProvider(window.ethereum);
     const signer = await provider.getSigner();
-
     const contract = new ethers.Contract(contractAddress, abi, signer);
-
     await contract.transfer(receiver, Number(amount));
-
     alert("Transfer successful");
   }
 
@@ -23,9 +20,7 @@ function Transfer() {
         placeholder="Receiver Address"
         onChange={(e) => setReceiver(e.target.value)}
       />
-
       <input placeholder="Amount" onChange={(e) => setAmount(e.target.value)} />
-
       <button onClick={transferBTC}>Transfer BTC</button>
     </div>
   );

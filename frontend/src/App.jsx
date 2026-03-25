@@ -18,9 +18,9 @@ import SettingsModal from "./modals/SettingsModal";
 import PortfolioModal from "./modals/PortfolioModal";
 import AddressBookModal from "./modals/AddressBookModal";
 import HistoryModal from "./modals/HistoryModal";
+import Footer from "./components/Footer";
 
 function App() {
-
   const [isWalletConnected, setIsWalletConnected] = useState(false);
 
   const [showWalletSelectionModal, setShowWalletSelectionModal] = useState(false);
@@ -28,6 +28,7 @@ function App() {
   const [showWalletModal, setShowWalletModal] = useState(false);
 
   const [showTokenModal, setShowTokenModal] = useState(false);
+
   const [showReviewModal, setShowReviewModal] = useState(false);
   const [showStatusModal, setShowStatusModal] = useState(false);
 
@@ -89,7 +90,7 @@ function App() {
         close={() => setShowWalletSelectionModal(false)}
         openMetaMask={() => {
           setShowWalletSelectionModal(false);
-          setShowMetaMaskModal(true);         
+          setShowMetaMaskModal(true);
         }}
       />
 
@@ -107,7 +108,23 @@ function App() {
         disconnectWallet={disconnectWallet}
       />
 
-      <TokenModal open={showTokenModal} close={() => setShowTokenModal(false)} />
+      {/* 🔥 FIXED TOKEN MODAL */}
+      <TokenModal
+        open={showTokenModal}
+        close={() => setShowTokenModal(false)}
+        onSelect={(token) => {
+          const type = window.selectingType || "sell";
+
+          const event = new CustomEvent("tokenSelected", {
+            detail: { token, type },
+          });
+
+          window.dispatchEvent(event);
+
+          setShowTokenModal(false);
+        }}
+      />
+
       <ReviewModal open={showReviewModal} close={() => setShowReviewModal(false)} />
       <StatusModal open={showStatusModal} close={() => setShowStatusModal(false)} />
       <SendModal open={showSendModal} close={() => setShowSendModal(false)} />
@@ -118,6 +135,7 @@ function App() {
       <AddressBookModal open={showAddressBookModal} close={() => setShowAddressBookModal(false)} />
       <HistoryModal open={showHistoryModal} close={() => setShowHistoryModal(false)} />
 
+      <Footer />
     </div>
   );
 }

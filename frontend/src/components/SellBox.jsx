@@ -19,14 +19,12 @@ function SellBox({
           onClick={openTokenModal}
           className="flex items-center gap-2"
         >
-
           <div
             className="w-8 h-8 rounded-full flex items-center justify-center text-lg"
             style={{ background: sellToken?.bg }}
           >
             {sellToken?.emoji}
           </div>
-
           <div className="flex flex-col text-left">
            <span className="text-sm font-bold">
               {sellToken?.sym}
